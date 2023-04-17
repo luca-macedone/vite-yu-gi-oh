@@ -10,4 +10,11 @@ header {
             font-weight: 300;
         }
     }
+    form {
+        width: 300px;
+        label {
+            display: inline-block;
+            font-size: $font-sm;
+        }
+    }
 }
