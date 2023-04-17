@@ -1,0 +1,13 @@
+@use "./variables.scss" as *;
+
+header {
+    background-color: $color-light;
+    .nav-link {
+        text-decoration: none;
+        color: $color-dark;
+        .title {
+            font-size: $font-xl;
+            font-weight: 300;
+        }
+    }
+}
