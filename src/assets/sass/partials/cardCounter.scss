@@ -1,0 +1,9 @@
+@use "./variables" as *;
+
+.col {
+    background-color: $color-dark;
+    color: $color-light;
+    h2 {
+        font-size: $font-xl;
+    }
+}

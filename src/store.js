@@ -3,7 +3,7 @@ import { reactive } from "vue";
 
 export const store = reactive({
     cardList: null,
-    api_URL: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0',
+    api_URL: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=49&offset=0',
     fetchCards(URL) {
         axios
             .get(URL)

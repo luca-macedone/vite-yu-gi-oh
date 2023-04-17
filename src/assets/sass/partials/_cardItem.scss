@@ -1,0 +1,19 @@
+@use "./variables" as *;
+
+.card {
+    min-height: 100%;
+    background-color: $color-primary;
+    .card-img-top {
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        object-position: top;
+    }
+    h3 {
+        font-size: $font-md;
+        color: $color-light;
+        font-weight: 600;
+    }
+    p {
+        font-size: $font-sm;
+    }
+}

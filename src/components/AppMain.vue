@@ -1,18 +1,19 @@
 <script>
 import CardList from "./CardList.vue";
+import CardCounter from "./CardCounter.vue";
 export default {
     components: {
         CardList,
+        CardCounter,
     }
 }
 </script>
 
 <template>
-    <main>
-        <div class="container">
-            <div class="row">
-                <CardList />
-            </div>
+    <main class="my-5">
+        <div class="container p-3">
+            <CardCounter />
+            <CardList />
         </div>
     </main>
 </template>
