@@ -9,7 +9,7 @@
       }
     },
     mounted() {
-      store.fetchCards(store.api_URL);
+      this.store.fetchCards(this.store.api_URL);
     },
     components: {
       AppHeader,
