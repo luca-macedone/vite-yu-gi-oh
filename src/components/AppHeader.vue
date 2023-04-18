@@ -1,10 +1,33 @@
 <script>
+import axios from 'axios';
+import { store } from '../store';
 export default {
     name: "AppHeader",
     data() {
         return {
+            store,
             logo :"https://upload.wikimedia.org/wikipedia/commons/1/11/Yu-Gi-Oh%21_%28Logo%29.jpg",
+            typesURL: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
+            cardTypes: null,
         }
+    },
+    emits: ['callFetch'],
+    methods: {
+        setTypes(){
+            axios
+                .get(this.typesURL)
+                .then(response => {
+                    //console.log(response.data);
+                    this.cardTypes = response.data;
+                    this.store.archetype = this.cardTypes[0].archetype_name;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    },
+    mounted() {
+        this.setTypes();
     }
 }
 </script>
@@ -17,11 +40,12 @@ export default {
                     alt="Logo">
                 <h1 class="title p-0 m-0">Yu-Gi-Oh Api</h1>
             </a>
-            <form class="d-flex justify-content-center align-items-center" action="#">
+            <form class="d-flex justify-content-center align-items-center" @submit="$emit('callFetch')">
                 <label class=" w-50 form-label" for="card-type-select">Please choose a type</label>
-                <select class=" w-50 form-select" name="card-type" id="card-type-select">
-                    <option>Choose...</option>
-                    <option value="alien" selected>Alien</option>
+                <select class=" w-50 form-select" name="card-type" id="card-type-select" v-model="store.archetype">
+                    <option value="all" selected>Choose...</option>
+                    <!-- <option value="Alien">Alien</option> -->
+                    <option :value="type.archetype_name" v-if="cardTypes" v-for="type in cardTypes"> {{ type.archetype_name }} </option>
                 </select>
             </form>
         </nav>

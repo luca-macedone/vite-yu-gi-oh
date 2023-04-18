@@ -4,7 +4,8 @@ import { reactive } from "vue";
 export const store = reactive({
     cardList: null,
     isLoading: true,
-    api_URL: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=49&offset=0',
+    archetype: null,
+    api_URL: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
     fetchCards(URL) {
         axios
             .get(URL)
