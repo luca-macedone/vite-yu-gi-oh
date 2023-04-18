@@ -43,7 +43,7 @@ export default {
             <form class="d-flex justify-content-center align-items-center" @submit="$emit('callFetch')">
                 <label class=" w-50 form-label" for="card-type-select">Please choose a type</label>
                 <select class=" w-50 form-select" name="card-type" id="card-type-select" v-model="store.archetype">
-                    <option value="all" selected>Choose...</option>
+                    <option value="All" selected>Choose...</option>
                     <!-- <option value="Alien">Alien</option> -->
                     <option :value="type.archetype_name" v-if="cardTypes" v-for="type in cardTypes"> {{ type.archetype_name }} </option>
                 </select>

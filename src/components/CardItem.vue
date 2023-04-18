@@ -22,9 +22,6 @@ export default {
                 <p class="text-center">{{ card.archetype }}</p>
             </div>
         </div>
-        <div v-else>
-            Please choose an archetype
-        </div>
     </div>
 </template>
 

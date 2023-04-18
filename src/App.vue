@@ -19,7 +19,9 @@
     },
     computed: {
       setURL(){
+        this.store.isLoading = true;
         if((this.store.archetype !== 'All') && (this.store.archetype !== null)){
+          //console.log(this.store.archetype);
           return this.store.api_URL + `?archetype=${this.store.archetype}`;
         }else{
           return this.store.api_URL + '?num=100&offset=0';

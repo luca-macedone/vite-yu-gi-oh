@@ -12,7 +12,9 @@ export const store = reactive({
             .then(response => {
                 //console.log(response.data.data);
                 this.cardList = response.data.data;
-                this.isLoading = false;
+                setTimeout(()=>{
+                    this.isLoading = false;
+                }, 1500)
             })
             .catch(error => {
                 console.log(error);
