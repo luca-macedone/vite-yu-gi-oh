@@ -8,12 +8,16 @@
         object-fit: cover;
         object-position: top;
     }
-    h3 {
-        font-size: $font-md;
-        color: $color-light;
-        font-weight: 600;
-    }
-    p {
-        font-size: $font-sm;
+    .card-body {
+        border: 8px solid $color-dark;
+        border-top: none;
+        h3 {
+            font-size: $font-md;
+            color: $color-light;
+            font-weight: 600;
+        }
+        p {
+            font-size: $font-sm;
+        }
     }
 }

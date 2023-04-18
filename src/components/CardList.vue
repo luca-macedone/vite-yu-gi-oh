@@ -17,8 +17,8 @@ export default {
 </script>
 
 <template>
-    <div class="row g-3 row-cols-1 row-cols-md-3 row-cols-lg-5" v-if="store.cardList">
-        <CardItem :href="card.card_images[0].image_url" :title="card.name" :type="card.archetype" v-for="card in store.cardList"/>
+    <div class="row g-3 row-cols-1 row-cols-md-3 row-cols-lg-5" v-if="!store.isLoading">
+        <CardItem :card="card" v-for="card in store.cardList"/>
     </div>
     <LoadingScreen v-else/>
 </template>
