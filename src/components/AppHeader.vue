@@ -6,28 +6,25 @@ export default {
     data() {
         return {
             store,
-            logo :"https://upload.wikimedia.org/wikipedia/commons/1/11/Yu-Gi-Oh%21_%28Logo%29.jpg",
-            typesURL: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
-            cardTypes: null,
+            logo: "https://upload.wikimedia.org/wikipedia/commons/1/11/Yu-Gi-Oh%21_%28Logo%29.jpg",
         }
     },
-    emits: ['callFetch'],
     methods: {
-        setTypes(){
-            axios
-                .get(this.typesURL)
-                .then(response => {
-                    //console.log(response.data);
-                    this.cardTypes = response.data;
-                    this.store.archetype = this.cardTypes[0].archetype_name;
-                })
-                .catch(error => {
-                    console.log(error);
-                })
+        filterCards() {
+            this.store.isLoading = true;
+            let filterURL;
+            if (this.store.archetype !== 'All' && this.store.archetype !== null) {
+                //console.log(this.store.archetype);
+                filterURL = this.store.base_URL + this.store.cards_api_URL + `?archetype=${this.store.archetype}`;
+            }
+            else {
+                filterURL = `${this.store.base_URL+this.store.cards_api_URL}?num=100&offset=0`;
+            }
+            this.store.fetchCards(filterURL);
         }
     },
     mounted() {
-        this.setTypes();
+        this.store.fetchArchetypes();
     }
 }
 </script>
@@ -36,16 +33,16 @@ export default {
     <header class="position-relative">
         <nav class="nav p-2 justify-content-center justify-content-md-between align-content-center g-3">
             <a class="nav-link d-flex justify-content-center align-items-center gap-2" href="#">
-                <img :src="this.logo" height="20"
-                    alt="Logo">
+                <img :src="this.logo" height="20" alt="Logo">
                 <h1 class="title p-0 m-0">Yu-Gi-Oh Api</h1>
             </a>
-            <form class="d-flex justify-content-center align-items-center flex-wrap" @submit="$emit('callFetch')">
+            <form class="d-flex justify-content-center align-items-center flex-wrap">
                 <label class="form-label" for="card-type-select">Please choose an archetype</label>
-                <select class="form-select" name="card-type" id="card-type-select" v-model="store.archetype">
-                    <option value="All" selected>Choose...</option>
-                    <!-- <option value="Alien">Alien</option> -->
-                    <option :value="type.archetype_name" v-if="cardTypes" v-for="type in cardTypes"> {{ type.archetype_name }} </option>
+                <select class="form-select" name="card-type" id="card-type-select" v-if="store.cardArchetypes"
+                    v-model="store.archetype" @change="filterCards()">
+                    <option value="All" selected>First 100 cards</option>
+                    <option :value="item.archetype_name" v-for="item in store.cardArchetypes"> {{ item.archetype_name }}
+                    </option>
                 </select>
             </form>
         </nav>

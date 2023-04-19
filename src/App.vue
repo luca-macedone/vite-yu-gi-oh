@@ -11,29 +11,17 @@
     },
     mounted() {
       // this.store.fetchCards(this.store.api_URL);
-      this.store.fetchCards(this.api_URL);
+      this.store.fetchCards(`${this.store.base_URL+this.store.cards_api_URL}?num=100&offset=0`);
     },
     components: {
       AppHeader,
       AppMain,
-    },
-    computed: {
-      setURL(){
-        this.store.isLoading = true;
-        if((this.store.archetype !== 'All') && (this.store.archetype !== null)){
-          //console.log(this.store.archetype);
-          return this.store.api_URL + `?archetype=${this.store.archetype}`;
-        }else{
-          return this.store.api_URL + '?num=100&offset=0';
-          //return store.api_URL;
-        }
-      }
     }
   }
 </script>
 
 <template>
-  <AppHeader :callFetch="store.fetchCards(setURL)"/>
+  <AppHeader/>
   <AppMain/>
 </template>
 

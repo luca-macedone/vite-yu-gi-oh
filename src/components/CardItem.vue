@@ -15,7 +15,7 @@ export default {
 
 <template>
     <div class="col">
-        <div class="card rounded-0 border-0" v-if="store.archetype !== 'All'">
+        <div class="card rounded-0 border-0" v-if="store.archetype !== 'null'">
             <img class="card-img-top rounded-0 border-0" :src="card.card_images[0].image_url" :alt="card.name">
             <div class="card-body">
                 <h3 class="text-center">{{ card.name }}</h3>
